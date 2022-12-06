@@ -31,7 +31,7 @@ def getUrlPaths(url, ext='', params={}):
 
     return parent
 
-def getUrl(time='hourly', year=2022, location_vector='3S', ext='.txt'):
+def getUrl(time='hourly', year=2022, location_vector='3_S', ext='.txt'):
     stations = dict()
     with open("resources/stations.tsv") as tsv_file:
         stations_reader = csv.reader(tsv_file, delimiter="\t")
@@ -46,8 +46,7 @@ def getUrl(time='hourly', year=2022, location_vector='3S', ext='.txt'):
             case "hourly": intervallUrl = HOURLY_URL
             case "daily": intervallUrl = DAILY_URL
             case "monthly": 
-                intervallUrl = MONTHLY_URL
-                finalUrl = getPaths(intervallUrl, ext, location_vector + ext)
+                return getPaths(MONTHLY_URL, ext, location_vector + ext)
             case _: return None
 
         yearUrl = getPaths(intervallUrl, '/', str(year) + '/')
