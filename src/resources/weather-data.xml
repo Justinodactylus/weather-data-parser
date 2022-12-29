@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="weather-data.dtd" type="application/xml-dtd"?>
+<!DOCTYPE weather_data SYSTEM "weather-data.dtd"> <!-- Old DOCTYPE definition necessary because parser of python module `lxml` can only validate a xml over a DTD when its defined with DOCTYPE -->
 <weather_data>
     <station_number>
         <Longitude></Longitude>
