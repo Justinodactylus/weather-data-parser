@@ -1,5 +1,7 @@
 # custom ignores
 CRN*
+headers*
+*_filled*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
