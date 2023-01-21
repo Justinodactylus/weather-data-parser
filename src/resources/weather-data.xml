@@ -36,22 +36,20 @@
                 <Avg_RH>
                     <QC_Flag_RH></QC_Flag_RH>
                 </Avg_RH>
-                <Soil>
-                    <Soil_Moisture>
-                        <Avg_Soil_Moisture_5_cm_below></Avg_Soil_Moisture_5_cm_below>
-                        <Avg_Soil_Moisture_10_cm_below></Avg_Soil_Moisture_10_cm_below>
-                        <Avg_Soil_Moisture_20_cm_below></Avg_Soil_Moisture_20_cm_below>
-                        <Avg_Soil_Moisture_50_cm_below></Avg_Soil_Moisture_50_cm_below>
-                        <Avg_Soil_Moisture_100_cm_below></Avg_Soil_Moisture_100_cm_below>
-                    </Soil_Moisture>
-                    <Soil_Temperature>
-                        <Avg_Soil_Temperature_5_cm></Avg_Soil_Temperature_5_cm>
-                        <Avg_Soil_Temperature_10_cm></Avg_Soil_Temperature_10_cm>
-                        <Avg_Soil_Temperature_20_cm></Avg_Soil_Temperature_20_cm>
-                        <Avg_Soil_Temperature_50_cm></Avg_Soil_Temperature_50_cm>
-                        <Avg_Soil_Temperature_100_cm></Avg_Soil_Temperature_100_cm>
-                    </Soil_Temperature>
-                </Soil>
+                <Soil_Moisture>
+                    <Avg_Soil_Moisture_5_cm_below></Avg_Soil_Moisture_5_cm_below>
+                    <Avg_Soil_Moisture_10_cm_below></Avg_Soil_Moisture_10_cm_below>
+                    <Avg_Soil_Moisture_20_cm_below></Avg_Soil_Moisture_20_cm_below>
+                    <Avg_Soil_Moisture_50_cm_below></Avg_Soil_Moisture_50_cm_below>
+                    <Avg_Soil_Moisture_100_cm_below></Avg_Soil_Moisture_100_cm_below>
+                </Soil_Moisture>
+                <Soil_Temperature>
+                    <Avg_Soil_Temperature_5_cm></Avg_Soil_Temperature_5_cm>
+                    <Avg_Soil_Temperature_10_cm></Avg_Soil_Temperature_10_cm>
+                    <Avg_Soil_Temperature_20_cm></Avg_Soil_Temperature_20_cm>
+                    <Avg_Soil_Temperature_50_cm></Avg_Soil_Temperature_50_cm>
+                    <Avg_Soil_Temperature_100_cm></Avg_Soil_Temperature_100_cm>
+                </Soil_Temperature>
             </UTC_Time>
         </UTC_Date>
     </station_number>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titel</title>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <!-- <script type="module" src="diagram.js"></script> -->
+  </head>
+  <body>
+
+    <p>Date: <input type="text" id="jesus"></p>
+
+    <label for="from">Von</label>
+    <input type="text" id="from" name="from">
+    <label for="to">to</label>
+    <input type="text" id="to" name="to"> 
+
+    <input type="checkbox" id="checkbox_temperature" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Temperatur</label>
+
+    <input type="checkbox" id="checkbox_temperature_5min" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Temperatur letzter 5 min</label>
+
+    <input type="checkbox" id="checkbox_precipitation" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Niederschlag</label>
+
+    <input type="checkbox" id="checkbox_infrared" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Infarot Temperatur</label>
+
+    <input type="checkbox" id="checkbox_solar_radiation" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Durchschnittliche Sonneneinstrahlung</label>
+
+    <input type="checkbox" id="checkbox_rh" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">RH</label>
+
+    <input type="checkbox" id="checkbox_soil_moisture" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Bodenfeuchtigkeit</label>
+
+    <input type="checkbox" id="checkbox_soil_temperature" onclick="singleCheckbox(this)">
+    <label for="exampleCheckbox">Bodentemperatur</label>
+
+    <script>
+      function singleCheckbox(clickedCheckbox) {
+          var checkboxes = document.getElementsByTagName("input");
+          for (var i = 0; i < checkboxes.length; i++) {
+              if (checkboxes[i] != clickedCheckbox) {
+                  checkboxes[i].checked = false;
+              }
+          }
+      }
+    </script>
+
+    <br></br>
+    <button id="clear_button">Lösche Eingaben</button>
+    <br></br>
+    
+    <div id="chartContainer" style="width:100%; height:300px;"></div>
+    <!-- <button onclick="window.location.href = 'index_working.html'">Zurück</button> -->
+    <!-- <button onclick="set_user_date()">Debugging</button> -->
+
+    <!-- <button onclick="window.location.href = 'index_graph.html'">Erstelle Graphen</button> -->
+    <button id="create_button"> Erstelle Graphen</button>
+  </body>
+</html>

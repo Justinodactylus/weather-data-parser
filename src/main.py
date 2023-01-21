@@ -1,4 +1,3 @@
-from fileinput import filename
 from __const__ import *
 import ftplib
 import csv
@@ -67,20 +66,13 @@ def getPath(hostname: str, path: str, endsWith: str, credentials: list):
 
 def getUrl(intervall: str, year: int, location_vector: str, ext: str, credentials: list):
     """`Returns` an url of a FTP file ending with `location_vector + ext` when its found in the `ftp.ncdc.noaa.gov/pub/data/uscrn/products/` directories in the given `intervall` and `year` path."""
+    
+    if intervall == 'monthly' and INTERVALL_PATH:
+        return HOSTNAME + INTERVALL_PATH + getPath(HOSTNAME, MONTHLY_PATH, location_vector + ext, credentials).removesuffix('/')
 
-    with open("resources/stations.tsv") as tsv_file:
-        stations_reader = csv.reader(tsv_file, delimiter="\t")
-
-        station_vector_list = []
-        for list in stations_reader:
-            station_vector_list.append(list[4].replace(' ', '_')) # gets all state location vectors (place 4) from stations.tsv and replace all spaces with '_' 
-
-        if intervall == 'monthly' and INTERVALL_PATH:
-            return HOSTNAME + INTERVALL_PATH + getPath(HOSTNAME, MONTHLY_PATH, location_vector + ext, credentials).removesuffix('/')
-
-        yearPath = getPath(HOSTNAME, INTERVALL_PATH, str(year), credentials)
-        finalPath = getPath(HOSTNAME, INTERVALL_PATH + yearPath, location_vector + ext, credentials).removesuffix('/')
-        return HOSTNAME + INTERVALL_PATH + yearPath + finalPath
+    yearPath = getPath(HOSTNAME, INTERVALL_PATH, str(year), credentials)
+    finalPath = getPath(HOSTNAME, INTERVALL_PATH + yearPath, location_vector + ext, credentials).removesuffix('/')
+    return HOSTNAME + INTERVALL_PATH + yearPath + finalPath
 
 def getFile(url: str, credentials: list = ["ftp", None]):
     """Downloads a FTP file with optional credentials when needed from a given `url`.\n
@@ -214,7 +206,7 @@ A file is been created in the same location where the given XML template is from
     xmlTree.write(fileName, xml_declaration=True, pretty_print=True, encoding=xmlTree.docinfo.encoding, standalone=xmlTree.docinfo.standalone)
     print("Putting data to XML template finished. Saved it to '" + fileName + "'.\nTesting again for well-formedness ...")
     validateAndParseXML(fileName, dtd_validation=True, remove_comments=False, remove_pis=False)
-    return fileName    
+    return xmlTree    
 
 def main():
     args = cliArgumentParser()
@@ -228,9 +220,24 @@ def main():
 
     print("Download of file finished.\n\nStart putting data to given XML template.\n")
 
-    filledXMLFileName = putDataToXML("resources/weather-data.xml", fileName, HEADER_HOURLY_MAPPING, 'UTC_Date')
+    putDataToXML("resources/weather-data.xml", fileName, HEADER_HOURLY_MAPPING, 'UTC_Date')
 
-    
+def apiMain(intervall: str, year: int, location: str):
+    #args = cliArgumentParser()
+    setTimeIntervall(intervall)
+
+    finalUrl = getUrl(intervall, year, location, '.txt', CREDENTIALS)
+
+    print("Following file was found: '" + finalUrl + "'\n\nStarting download ...\n")
+
+    fileName = getFile(finalUrl, CREDENTIALS)
+
+    print("Download of file finished.\n\nStart putting data to given XML template.\n")
+
+    filledXML = putDataToXML("resources/weather-data.xml", fileName, HEADER_HOURLY_MAPPING, 'UTC_Date')
+
+    return etree.tostring(filledXML)
+
 
 if __name__ == "__main__":
     main()
