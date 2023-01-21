@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  web:
+    image: nginx:stable-alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./web/nginx.conf:/etc/nginx/nginx.conf:ro,z
+      - ./web/html:/srv/html:ro,z
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.weather-data.rule=Host(`${weather_data_url}`)&&Method(`GET`,`HEAD`,`OPTIONS`)
+      - traefik.http.routers.weather-data.entrypoints=https
+      - traefik.http.routers.weather-data.tls=true
+      - traefik.http.routers.weather-data.middlewares=external-secure
+    networks:
+      - proxy
+
+  backend:
+    build:
+      context: src
+    restart: always
+    # flask requires SIGINT to stop gracefully
+    # (default stop signal from Compose is SIGTERM)
+    stop_signal: SIGINT
+    environment:
+      - FLASK_SERVER_PORT=5049
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.weather-data-backend.rule=Host(`${weather_data_url_backend}`)&&Method(`GET`,`HEAD`,`OPTIONS`)
+      - traefik.http.routers.weather-data-backend.entrypoints=https
+      - traefik.http.routers.weather-data-backend.tls=true
+      - traefik.http.routers.weather-data-backend.middlewares=external-secure
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
