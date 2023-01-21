@@ -3,8 +3,6 @@ services:
   web:
     image: nginx:stable-alpine
     restart: always
-    ports:
-      - 80:80
     volumes:
       - ./web/nginx.conf:/etc/nginx/nginx.conf:ro,z
       - ./web/html:/srv/html:ro,z
