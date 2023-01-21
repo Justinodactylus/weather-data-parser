@@ -1,4 +1,3 @@
-from fileinput import filename
 from __const__ import *
 import ftplib
 import csv
