@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: deployment_to_server
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: 'Download artifact'
+        uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: 'deploy website on server'
+        env:
+          ssh_host: ${{ secrets.SSH_HOST }}
+          ssh_user: ${{ secrets.SSH_USER }}
+          ssh_key: ${{ secrets.SSH_KEY }}
+          weather_data_url: ${{ secrets.WEATHER_DATA_URL }}
+          weather_data_url_backend: ${{ secrets.WEATHER_DATA_URL_BACKEND }}
+        run: |
+          echo deploy to server
+          eval $(ssh-agent -s)
+          ssh-add <(echo "$ssh_key" | tr -d '\r')
+          sed -i -e "s/<weather_data_url>/$weather_data_url/" -e "s/<weather_data_url_backend>/$weather_data_url_backend/" .env
+          scp -o StrictHostKeyChecking=no -r src/ web/ .env docker-compose.yml $ssh_user@$ssh_host:/home/$ssh_user/weather_data
+          ssh -o StrictHostKeyChecking=no $ssh_user@$ssh_host "source /etc/profile && cd /home/$ssh_user/weather_data/ && docker-compose down && docker-compose up -d"
+        shell: bash
