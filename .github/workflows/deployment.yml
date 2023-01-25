@@ -35,5 +35,5 @@ jobs:
           ssh-add <(echo "$ssh_key" | tr -d '\r')
           sed -i -e "s/<weather_data_url>/$weather_data_url/" -e "s/<weather_data_url_backend>/$weather_data_url_backend/" .env
           scp -o StrictHostKeyChecking=no -r src/ web/ .env docker-compose.yml $ssh_user@$ssh_host:/home/$ssh_user/weather_data
-          ssh -o StrictHostKeyChecking=no $ssh_user@$ssh_host "source /etc/profile && cd /home/$ssh_user/weather_data/ && docker-compose down && docker-compose up -d"
+          ssh -o StrictHostKeyChecking=no $ssh_user@$ssh_host "source /etc/profile && cd /home/$ssh_user/weather_data/ && docker-compose down --rmi local --remove-orphans && docker-compose up -d"
         shell: bash
