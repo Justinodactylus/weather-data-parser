@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import Response
-from flask_cors import CORS,cross_origin
+from flask_cors import CORS
 from main import apiMain
 import csv
 import os
