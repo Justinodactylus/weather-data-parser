@@ -47,6 +47,25 @@
     <input type="checkbox" id="checkbox_soil_temperature" onclick="singleCheckbox(this)">
     <label for="exampleCheckbox">Bodentemperatur</label>
 
+    <br></br>
+
+    <label for="exampleSelect">Intervall</label>
+    <select id="Intervall" name="Intervall">
+      <option value="option1" selected>hourly</option>
+      <option value="option2">monthly</option>
+      <option value="option3">yearly</option>
+    </select>
+
+    <br></br>
+
+    <label for="year">Year</label>
+    <input type="text" id="year" name="year">
+
+    <br></br>
+
+    <label for="place">Place</label>
+    <input type="text" id="place" name="place">
+
     <script>
       function singleCheckbox(clickedCheckbox) {
           var checkboxes = document.getElementsByTagName("input");
