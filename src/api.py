@@ -1,10 +1,13 @@
 from flask import Flask
 from flask import Response
+from flask_cors import CORS,cross_origin
 from main import apiMain
 import csv
 import os
 
 app = Flask(__name__)
+
+CORS(app)
 
 STATIONS_TSV_LOCATION = "resources/stations.tsv"
 
@@ -43,6 +46,7 @@ def getWeatherData(intervall, year, location):
     filledXML = apiMain(intervall, year, location)
     resp = Response(filledXML, mimetype='application/xml')
     resp.headers["Content-Type"] = "text/xml; charset=utf-8"
+    resp.headers.add('Access-Control-Allow-Origin', '*')
     return resp
     
 
