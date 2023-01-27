@@ -282,8 +282,6 @@ def apiMain(intervall: str, year: int, location: str):
 
     print("Download of file finished.\n\nStart putting data to given XML template.\n")
 
-    mappings = getIntervallMapping(intervall)
-
     filledXML = putDataToXML(getXMLFileMapping(intervall), fileName, getXMLElementsMapping(intervall), 'UTC_Date')
 
     return etree.tostring(filledXML)
