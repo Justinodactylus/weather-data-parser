@@ -1,14 +1,16 @@
 from flask import Flask
 from flask import Response
 from flask_cors import CORS
+from werkzeug.middleware.proxy_fix import ProxyFix
 from main import apiMain, validateRequestParams, getLocationVectorList
 import json
-import csv
 import os
 
 app = Flask(__name__)
 
 CORS(app)
+
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/locationVectors/')
 def getLocationVectors():
