@@ -238,7 +238,7 @@ def validateRequestParams(intervall: str, year: int, location: str) -> bool:
 
     if (intervall not in ['hourly','daily','monthly']):
         raise Exception("Given intervall is none of the following strings: 'hourly', 'daily' or 'monthly'.")
-    if year not in range(2000, 2023):
+    if year not in range(2000, 2024):
         raise Exception("Given year has to be in the range of 2000 to 2023")
 
     locationVectorList = getLocationVectorList()
