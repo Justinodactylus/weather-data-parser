@@ -26,6 +26,16 @@
     <label for="to">to</label>
     <input type="text" id="to" name="to"> 
 
+    <script>
+      document.getElementById("jesus").addEventListener("click", function() {
+        document.getElementById("from").value = "";
+        document.getElementById("to").value = "";
+      });
+      document.getElementById("from").addEventListener("click", function() {
+        document.getElementById("jesus").value = "";
+      });
+    </script>
+
     <input type="checkbox" id="checkbox_temperature" onclick="singleCheckbox(this)">
     <label for="exampleCheckbox">Temperatur</label>
 
