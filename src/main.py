@@ -204,12 +204,59 @@ A file is been created in the same location where the given XML template is from
     fileName = pathToXMLTemplate.rpartition('.')[0] + '_filled.' + pathToXMLTemplate.rpartition('.')[2]
 
     xmlTree.write(fileName, xml_declaration=True, pretty_print=True, encoding=xmlTree.docinfo.encoding, standalone=xmlTree.docinfo.standalone)
-    print("Putting data to XML template finished. Saved it to '" + fileName + "'.\nTesting again for well-formedness ...")
+    print("Putting data to XML template finished. Saved it to '" + fileName + "'.\n\nTesting again for well-formedness ...")
     validateAndParseXML(fileName, dtd_validation=True, remove_comments=False, remove_pis=False)
-    return xmlTree    
+    return xmlTree
+
+def getXMLFileMapping(intervall: str):
+    """`Return` the xml file path for the given `intervall`."""
+
+    return XML_FILE_MAPPING.get(intervall)
+
+def getXMLElementsMapping(intervall: str):
+    """`Return` the mapping of header values to the XML elements for the given `intervall`."""
+
+    match intervall:
+        case "hourly": return HEADER_HOURLY_MAPPING
+        case "daily": return HEADER_DAILY_MAPPING
+        case "monthly": return HEADER_MONTHLY_MAPPING
+        case _: return None 
+
+def getLocationVectorList() -> list:
+    """`Return` a list of all possible location vectors usable by this program"""
+
+    with open(STATIONS_TSV_LOCATION) as tsv_file:
+        stations_reader = csv.reader(tsv_file, delimiter="\t")
+
+        station_vector_list = []
+        for list in stations_reader:
+            station_vector_list.append(list[4].replace(' ', '_')) # gets all state location vectors (place 4) from stations.tsv and replace all spaces with '_'
+        return station_vector_list
+
+def validateRequestParams(intervall: str, year: int, location: str) -> bool:
+    """Validate if given `intervall`, `year` and `location` have valid values"""
+
+    if (intervall not in ['hourly','daily','monthly']):
+        raise Exception("Given intervall is none of the following strings: 'hourly', 'daily' or 'monthly'.")
+    if year not in range(2000, 2023):
+        raise Exception("Given year has to be in the range of 2000 to 2023")
+
+    locationVectorList = getLocationVectorList()
+    if location not in locationVectorList:
+        raise Exception("Given location must be a valid location vector. See station.tsv in the repo.")
+
+    return True
 
 def main():
+    """Main function to be called by a script or terminal which gets the `intervall`, `year` and `location` values by cli arguments."""
+
     args = cliArgumentParser()
+
+    try:
+        validateRequestParams(args.time_intervall, args.year, args.location)
+    except Exception as err:
+        raise Exception('Bad request: {}'.format(str(err)))
+
     setTimeIntervall(args.time_intervall)
 
     finalUrl = getUrl(args.time_intervall, args.year, args.location, '.txt', CREDENTIALS)
@@ -220,10 +267,11 @@ def main():
 
     print("Download of file finished.\n\nStart putting data to given XML template.\n")
 
-    putDataToXML("resources/weather-data.xml", fileName, HEADER_HOURLY_MAPPING, 'UTC_Date')
+    putDataToXML(getXMLFileMapping(args.time_intervall), fileName, getXMLElementsMapping(args.time_intervall), 'UTC_Date')
 
 def apiMain(intervall: str, year: int, location: str):
-    #args = cliArgumentParser()
+    """Main function to be called by an api service with given `intervall`, `year` and `location`"""
+
     setTimeIntervall(intervall)
 
     finalUrl = getUrl(intervall, year, location, '.txt', CREDENTIALS)
@@ -234,7 +282,9 @@ def apiMain(intervall: str, year: int, location: str):
 
     print("Download of file finished.\n\nStart putting data to given XML template.\n")
 
-    filledXML = putDataToXML("resources/weather-data.xml", fileName, HEADER_HOURLY_MAPPING, 'UTC_Date')
+    mappings = getIntervallMapping(intervall)
+
+    filledXML = putDataToXML(getXMLFileMapping(intervall), fileName, getXMLElementsMapping(intervall), 'UTC_Date')
 
     return etree.tostring(filledXML)
 

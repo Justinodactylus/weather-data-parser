@@ -3,6 +3,13 @@ HOURLY_PATH='/pub/data/uscrn/products/hourly02/'
 DAILY_PATH='/pub/data/uscrn/products/daily01/'
 MONTHLY_PATH='/pub/data/uscrn/products/monthly01/'
 CREDENTIALS = ["ftp", "tomiger450\@dmonies.com"] # random email
+STATIONS_TSV_LOCATION = "resources/stations.tsv"
+
+XML_FILE_MAPPING={
+    'hourly':'resources/weather-data-hourly.xml',
+    'daily':'resources/weather-data-daily.xml',
+    'monthly':'resources/weather-data-monthly.xml',
+}
 
 HEADER_HOURLY_MAPPING={
     'WBANNO':'station_number',
@@ -45,7 +52,7 @@ HEADER_HOURLY_MAPPING={
 HEADER_DAILY_MAPPING={
     'WBANNO':'station_number',
     'CRX_VN':'Version_Number_OF_Stations_Datalogger_Program',
-    'LST_DATE':'LST_Date',
+    'LST_DATE':'UTC_Date',
     'LONGITUDE':'Longitude',
     'LATITUDE':'Latitude',
     'T_DAILY_AVG':'Avg_Air_Temperature',
@@ -75,7 +82,7 @@ HEADER_DAILY_MAPPING={
 HEADER_MONTHLY_MAPPING={
     'WBANNO':'station_number',
     'CRX_VN_MONTHLY':'Version_Number_OF_Stations_Datalogger_Program',
-    'LST_YRMO':'LST_Date',
+    'LST_YRMO':'UTC_Date',
     'PRECISE_LONGITUDE':'Longitude',
     'PRECISE_LATITUDE':'Latitude',
     'T_MONTHLY_AVG':'Avg_Air_Temperature',

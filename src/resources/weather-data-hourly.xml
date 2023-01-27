@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE weather_data SYSTEM "weather-data.dtd"> <!-- Old DOCTYPE definition necessary because parser of python module `lxml` can only validate a xml over a DTD when its defined with DOCTYPE -->
+<!DOCTYPE weather_data SYSTEM "weather-data-hourly.dtd"> <!-- Old DOCTYPE definition necessary because parser of python module `lxml` can only validate a xml over a DTD when its defined with DOCTYPE -->
 <weather_data>
     <station_number>
         <Longitude></Longitude>
@@ -7,32 +7,35 @@
         <Version_Number_OF_Stations_Datalogger_Program></Version_Number_OF_Stations_Datalogger_Program>
         <UTC_Date>
             <UTC_Time>
-                <Avg_Air_Temperature>
+                <Temperature>
                     <Avg_Air_Temperature_Last_5_Min></Avg_Air_Temperature_Last_5_Min>
+                    <Avg_Air_Temperature></Avg_Air_Temperature>
                     <Max_Air_Temperature></Max_Air_Temperature>
                     <Min_Air_Temperature></Min_Air_Temperature>
-                    <Infrared_Surface_Temperature_Type>
-                        <Avg_Infrared_Temperature>
-                            <QC_Flag_Infrared_Surface_Temperature_Avg></QC_Flag_Infrared_Surface_Temperature_Avg>
-                            <Max_Infrared_Temperature>
-                                <QC_Flag_Infrared_Surface_Temperature_Max></QC_Flag_Infrared_Surface_Temperature_Max>
-                            </Max_Infrared_Temperature>
-                            <Min_Infrared_Temperature>
-                                <QC_Flag_Infrared_Surface_Temperature_Min></QC_Flag_Infrared_Surface_Temperature_Min>
-                            </Min_Infrared_Temperature>
-                        </Avg_Infrared_Temperature>
-                    </Infrared_Surface_Temperature_Type>
-                </Avg_Air_Temperature>
+                </Temperature>
                 <Precipitation></Precipitation>
-                <Avg_Solar_Radioation>
-                    <QC_Flag_Solar_Radioation_Avg></QC_Flag_Solar_Radioation_Avg>
+                <Solar_Radioation>
+                    <Avg_Solar_Radioation>
+                        <QC_Flag_Solar_Radioation_Avg></QC_Flag_Solar_Radioation_Avg>
+                    </Avg_Solar_Radioation>
                     <Max_Solar_Radioation>
                         <QC_Flag_Solar_Radioation_Max></QC_Flag_Solar_Radioation_Max>
                     </Max_Solar_Radioation>
                     <Min_Solar_Radioation>
                         <QC_Flag_Solar_Radioation_Min></QC_Flag_Solar_Radioation_Min>
                     </Min_Solar_Radioation>
-                </Avg_Solar_Radioation>
+                </Solar_Radioation>
+                <Infrared_Surface_Temperature_Type>
+                    <Avg_Infrared_Temperature>
+                        <QC_Flag_Infrared_Surface_Temperature_Avg></QC_Flag_Infrared_Surface_Temperature_Avg>
+                    </Avg_Infrared_Temperature>
+                    <Max_Infrared_Temperature>
+                            <QC_Flag_Infrared_Surface_Temperature_Max></QC_Flag_Infrared_Surface_Temperature_Max>
+                    </Max_Infrared_Temperature>
+                    <Min_Infrared_Temperature>
+                        <QC_Flag_Infrared_Surface_Temperature_Min></QC_Flag_Infrared_Surface_Temperature_Min>
+                    </Min_Infrared_Temperature>
+                </Infrared_Surface_Temperature_Type>
                 <Avg_RH>
                     <QC_Flag_RH></QC_Flag_RH>
                 </Avg_RH>
