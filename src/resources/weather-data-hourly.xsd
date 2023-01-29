@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="https://www.w3schools.com"
+xmlns="https://www.w3schools.com">
+    <xs:element name="weather_data" type="weather_data_type"/>
+    <xs:complexType name="weather_data_type">
+        <xs:sequence>
+            <xs:element name="station_number">
+                <xs:complexType mixed="true">
+                    <xs:sequence>
+                        <xs:element name="Longitude" type="xs:decimal"/>
+                        <xs:element name="Latitude" type="xs:decimal"/>
+                        <xs:element name="Version_Number_OF_Stations_Datalogger_Program" type="xs:decimal"/>
+                        <xs:element name="UTC_Date">
+                            <xs:complexType mixed="true">
+                                <xs:sequence>
+                                    <xs:element name="UTC_Time">
+
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
