@@ -147,7 +147,8 @@ async function set_user_date(){
     if(intervall == "option1"){
         intervall = "hourly";
     } else if (intervall == "option2"){
-        intervall = "dayly";
+        intervall = "daily";
+        time_setter = 1;
     }else {
         intervall = "monthly";
         time_setter = 1;
