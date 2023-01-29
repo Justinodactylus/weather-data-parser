@@ -1,0 +1,89 @@
+/* body { */
+    /* Schriftart und Schriftgröße */
+    /* font-family: Arial, sans-serif;
+    font-size: 16px; */
+    /* Hintergrund */
+    /* background-color: #f2f2f2;
+}
+h1, h2, h3 {
+    color: #333;
+    font-weight: bold;
+} */
+
+/* Eingabefelder */
+/* input[type="text"] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+} */
+
+/* Schaltflächen */
+/* button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+} */
+
+/* Über- und Unterstreichung bei Hover-Effekt */
+/* button:hover {
+    opacity: 0.8;
+} */
+
+/* Abstand zwischen den Abschnitten */
+/* .container {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+} */
+
+/* Anpassung an kleine Bildschirme */
+/* @media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+} */
+
+
+    body {
+        background-color: #d1d1d1;
+        margin: 30px;
+    }
+
+    h1, h2, h3 {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .container {
+        margin-top: 30px;
+        border-radius: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        border-radius: 0;
+    }
+
+    #chartContainer {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+    }
+
+    #create_button, #clear_button {
+        margin-top: 20px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
