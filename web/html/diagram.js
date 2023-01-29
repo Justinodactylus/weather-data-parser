@@ -118,6 +118,182 @@ function how_many_years(start_date, end_date){
 var date = "";
 var dates = [];
 
+var locations = [
+    ["place0", "1_NNE"],
+    ["place1", "87_WNW"],
+    ["place2", "14_ESE"],
+    ["place3", "3_S"],
+    ["place4", "27_N"],
+    ["place5", "11_NE"],
+    ["place6", "64_N"],
+    ["place7", "2_NE"],
+    ["place8", "1_NNE"],
+    ["place9", "29_ENE"],
+    ["place10", "42_SE"],
+    ["place11", "6_S"],
+    ["place12", "1_SW"],
+    ["place13", "3_SSW"],
+    ["place14", "44_ESE"],
+    ["place15", "1_ENE"],
+    ["place16", "28_E"],
+    ["place17", "1_NE"],
+    ["place18", "4_NE"],
+    ["place19", "70_SE"],
+    ["place20", "5_ENE"],
+    ["place21", "4_ENE"],
+    ["place22", "3_SSE"],
+    ["place23", "3_NNE"],
+    ["place24", "2_NE"],
+    ["place25", "2_WSW"],
+    ["place26", "3_ENE"],
+    ["place27", "3_NE"],
+    ["place28", "19_N"],
+    ["place29", "2_NE"],
+    ["place30", "2_WNW"],
+    ["place31", "2_S"],
+    ["place32", "2_N"],
+    ["place33", "2_S"],
+    ["place34", "4_SSE"],
+    ["place35", "2_NE"],
+    ["place36", "6_SSE"],
+    ["place37", "13_WNW"],
+    ["place38", "10_NNE"],
+    ["place39", "2_S"],
+    ["place40", "2_W"],
+    ["place41", "1_SSW"],
+    ["place42", "8_WNW"],
+    ["place43", "5_S"],
+    ["place44", "11_W"],
+    ["place45", "35_NNW"],
+    ["place46", "27_ENE"],
+    ["place47", "6_WSW"],
+    ["place48", "5_NE"],
+    ["place49", "23_WSW"],
+    ["place50", "12_WNW"],
+    ["place51", "11_W"],
+    ["place52", "1_SW"],
+    ["place53", "12_W"],
+    ["place54", "14_W"],
+    ["place55", "8_SE"],
+    ["place56", "2_E"],
+    ["place57", "17_WSW"],
+    ["place58", "11_ENE"],
+    ["place59", "7_NNE"],
+    ["place60", "5_NE"],
+    ["place61", "23_SSE"],
+    ["place62", "7_E"],
+    ["place63", "23_S"],
+    ["place64", "8_W"],
+    ["place65", "11_SW"],
+    ["place66", "5_SSE"],
+    ["place67", "5_S"],
+    ["place68", "5_NNE"],
+    ["place69", "17_E"],
+    ["place70", "17_SW"],
+    ["place71", "10_W"],
+    ["place72", "9_SW"],
+    ["place73", "5_NNE"],
+    ["place74", "5_WNW"],
+    ["place75", "6_SSW"],
+    ["place76", "19_SSW"],
+    ["place77", "21_NNE"],
+    ["place78", "3_NNW"],
+    ["place79", "13_SE"],
+    ["place80", "26_N"],
+    ["place81", "4_NNW"],
+    ["place82", "2_W"],
+    ["place83", "1_SE"],
+    ["place84", "9_SSW"],
+    ["place85", "12_NNW"],
+    ["place86", "6_W"],
+    ["place87", "22_ENE"],
+    ["place88", "24_N"],
+    ["place89", "10_W"],
+    ["place90", "4_N"],
+    ["place91", "5_ENE"],
+    ["place92", "18_WSW"],
+    ["place93", "42_WSW"],
+    ["place94", "1_SSW"],
+    ["place95", "29_ENE"],
+    ["place96", "34_NE"],
+    ["place97", "8_SSW"],
+    ["place98", "13_S"],
+    ["place99", "11_W"],
+    ["place100", "38_WSW"],
+    ["place101", "7_E"],
+    ["place102", "5_ESE"],
+    ["place103", "20_SSE"],
+    ["place104", "8_ENE"],
+    ["place105", "11_SW"],
+    ["place106", "5_ENE"],
+    ["place107", "2_N"],
+    ["place108", "2_SSW"],
+    ["place109", "20_N"],
+    ["place110", "13_W"],
+    ["place111", "20_N"],
+    ["place112", "5_W"],
+    ["place113", "52_WSW"],
+    ["place114", "3_SSW"],
+    ["place115", "13_E"],
+    ["place116", "3_W"],
+    ["place117", "3_SSE"],
+    ["place118", "2_E"],
+    ["place119", "2_SE"],
+    ["place120", "2_W"],
+    ["place121", "5_WNW"],
+    ["place122", "1_W"],
+    ["place123", "8_SW"],
+    ["place124", "10_SSW"],
+    ["place125", "35_WNW"],
+    ["place126", "10_WSW"],
+    ["place127", "2_N"],
+    ["place128", "1_NW"],
+    ["place129", "1_W"],
+    ["place130", "3_W"],
+    ["place131", "7_NE"],
+    ["place132", "35_WNW"],
+    ["place133", "13_ESE"],
+    ["place134", "24_S"],
+    ["place135", "14_NNE"],
+    ["place136", "7_NW"],
+    ["place137", "33_NW"],
+    ["place138", "11_NNE"],
+    ["place139", "17_NNE"],
+    ["place140", "6_ENE"],
+    ["place141", "19_S"],
+    ["place142", "6_WNW"],
+    ["place143", "2_N"],
+    ["place144", "32_NNE"],
+    ["place145", "28_WNW"],
+    ["place146", "7_E"],
+    ["place147", "5_ENE"],
+    ["place148", "2_SSE"],
+    ["place149", "21_NNE"],
+    ["place150", "4_NE"],
+    ["place151", "17_SSW"],
+    ["place152", "5_WNW"],
+    ["place153", "21_ENE"],
+    ["place154", "11_SSE"],
+    ["place155", "1_NNE"],
+    ["place156", "8_NNW"]
+]
+
+
+
+function get_place(){
+    var places = document.getElementById("Places").value
+    var place;
+    for(var i = 0; i < locations.length; i++){
+        console.log("locations[i][0] : " + locations[i][0]);
+        if(places == locations[i][0]){
+            console.log("wurde gechacked");
+            place = locations[i][1];
+            break;
+        }
+    }
+    return place
+}
+
 //Standart Values
 var intervall = "hourly"
 var year = "2022"
@@ -142,6 +318,7 @@ async function set_user_date(){
     // wenn ready rein damit
     var time_options = ["UTC_Time", "UTC_Date"];
     var time_setter = 0;
+    var O_daily_l_monthly;
 
     var intervall = document.getElementById("Intervall").value
     if(intervall == "option1"){
@@ -149,14 +326,17 @@ async function set_user_date(){
     } else if (intervall == "option2"){
         intervall = "daily";
         time_setter = 1;
+        O_daily_l_monthly = 0;
     }else {
         intervall = "monthly";
         time_setter = 1;
+        O_daily_l_monthly = 1;
     }
 
     // evt.anpassung von Namen -> Vector
-    var location_vector = document.getElementById("place").value
+    var location_vector = get_place();
 
+    //Übergibt die Dates von bis einzeln (z.B.: 20220101, 20220102, ...)
     for (var current_date = start_date; current_date <= end_date; current_date.setDate((current_date.getDate() + 1) ) ){
         console.log("current_date Day : " + current_date.getDate());
         console.log("current_date Month : " + (current_date.getMonth() + 1)); 
@@ -192,6 +372,7 @@ async function set_user_date(){
 
     console.log("set_user_date: : " + date);
 
+    //Macht unser Datum lesbar für die Funktion
     if (date.length > 0 ) {
         date = date.replaceAll("/", "")
         dates.push(date);    
@@ -204,6 +385,8 @@ async function set_user_date(){
     console.log("dates[dates.length]: " + dates[dates.length-1]);
 
     var different_years = []
+
+    //fügt Datum/-s in different_years ein
     if(dates.length > 0){
         different_years = how_many_years(dates[0],dates[dates.length-1]);
     }else if (date.length > 0){
@@ -212,8 +395,8 @@ async function set_user_date(){
         console.log("Es wurde keine Datumseingabe getätigt");
     }
 
-
-    if(time_setter == 1){
+    //passt dates Format an, wenn daily oder monthly ausgewählt wird
+    if(time_setter == 1 && O_daily_l_monthly == 1){
         for(var t = 0; t < dates.length; t++){
             var snipped_date = dates[t];
             dates[t] = snipped_date.slice(0, 6);
@@ -241,16 +424,25 @@ async function set_user_date(){
     }
         for (var d = 0; d < selfmade_url.length; d++){
             console.log("selfmade_url[d]: " + selfmade_url[d]);
-            await delay(7000);
+            if(time_setter == 0 || O_daily_l_monthly == 0){
+                await delay(7000);
+            }
 
             $.get(selfmade_url[d], function(weather_data) {
                 for(var i = 0; i < dates.length; i++) {
                     $(weather_data).find("UTC_Date").filter(":contains(" + dates[i] + ")").each(function () {
-                        
+                        var x;
                         var $dataPoint = $(this);
-                        var x = $dataPoint.find(time_options[time_setter]).clone().children().remove().end().text();
+                        if(time_setter == 1){
+                            x = $dataPoint.clone().children().remove().end().text();
+                        }else{
+                            x = $dataPoint.find(time_options[time_setter]).clone().children().remove().end().text();
+                        }
+                        
                         var y = $dataPoint.find(get_search_will[0]).clone().children().remove().end().text();
                         
+                        console.log("Ausgabe von x:" + x);
+
                         if (y <= -99.000){
                             y = "";
                         }
@@ -364,6 +556,9 @@ async function set_user_date(){
                 });
                 chart.render();
             });
+            if(time_setter == 1 && O_daily_l_monthly == 1){
+                d = selfmade_url.length+1;
+            }
         }
         // $("input[type='text']").val("");
      
