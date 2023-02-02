@@ -1,3 +1,4 @@
+//erkennt die Eingabe im Datum / Datums Intervall eingaben
 $(function() {
     $( "#jesus" ).datepicker({
         dateFormat : "yy/mm/dd"
@@ -8,8 +9,7 @@ $(function() {
         onSelect: function( selectedDate ) {
             if(this.id == 'from'){
               var dateMin = $('#from').datepicker("getDate");
-              var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(),dateMin.getDate() + 1); // Min Date = Selected + 1d
-            //   var rMax = new Date(dateMin.getFullYear(), dateMin.getMonth(),dateMin.getDate() + 31); // Max Date = Selected + 31d
+              var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(),dateMin.getDate() + 1);
               $('#to').datepicker("option","minDate",rMin);
               $('#to').datepicker("option","maxDate");                    
             }
@@ -18,6 +18,7 @@ $(function() {
     });
 });
 
+//Erstellt Wartezeichen-Komponenten
 var opts = {
     lines: 12, // The number of lines to draw
     length: 7, // The length of each line
@@ -39,9 +40,10 @@ function stop_spinner(){
     spinner.stop();
 }
 
-
+//Startet das generieren des Graphen
 document.getElementById("create_button").addEventListener("click", set_user_date);
 
+//Checkbox, "Großthema", "Menschliche" beschreibung des Großthemas (wird als Title genutzt)
 var checkbox_options = [
     ["#checkbox_temperature", "Avg_Air_Temperature", "Temperatur"],
     ["#checkbox_temperature_5min", "Avg_Air_Temperature_Last_5_Min","Temperatur letzter 5 min" ],
@@ -53,6 +55,7 @@ var checkbox_options = [
     ["#checkbox_soil_temperature", "Avg_Soil_Temperature_5_cm", "Bodentemperatur"]
 ]
 
+//Zusatzinformationen für jede "Großoption"
 var checkbox_behind_the_scenes_data = [
 "Max_Air_Temperature", "Min_Air_Temperature", 
 "Max_Infrared_Temperature", "Min_Infrared_Temperature",
@@ -63,6 +66,7 @@ var checkbox_behind_the_scenes_data = [
 var checkbox_temperature = false;
 var checkbox_preciputation = false;
 
+//aktiviert, was im Diagram angezeigt wird (max, min, avg,...), je nach dem was in der Checkbox angeklickt wurde
 function get_checkbox_search(){
     var weitergabe = [];
 
@@ -99,6 +103,7 @@ function get_checkbox_search(){
     return weitergabe;
 }
 
+//Gibt Array wieder, in welcher start und endjahr steht
 function how_many_years(start_date, end_date){
     var array_of_years = [];
     var start_year = parseInt(start_date.slice(0,4));
@@ -279,7 +284,7 @@ var locations = [
 ]
 
 
-
+//Bekommt Place von Dings
 function get_place(){
     var places = document.getElementById("Places").value
     var place;
@@ -307,6 +312,7 @@ async function set_user_date(){
 
     dates = [];
 
+    //Einzelnes Datum (kein Intervall)
     date = document.getElementById("jesus").value;
     var date_name = date;
     
@@ -315,11 +321,11 @@ async function set_user_date(){
     var start_date = new Date(input_start_date);
     var end_date = new Date(input_end_date);
 
-    // wenn ready rein damit
     var time_options = ["UTC_Time", "UTC_Date"];
     var time_setter = 0;
     var O_daily_l_monthly;
 
+    //Gibt an, wie das Intervall dargestellt werden soll
     var intervall = document.getElementById("Intervall").value
     if(intervall == "option1"){
         intervall = "hourly";
@@ -403,6 +409,7 @@ async function set_user_date(){
         }
     }
 
+    //ausgewählte Checkbox wird übereben 
     var get_search_will = get_checkbox_search();
 
     var dataPoints = [];
@@ -413,8 +420,8 @@ async function set_user_date(){
     
     console.log("time_options[time_setter]:" + time_options[time_setter]);
 
-    // Mögliche Fehlermeldung: siehe nach wenn Justin den code gefixt
     var selfmade_url = []
+    //Erstellt die Links, wenn mehr als ein Jahr Intervall gewählt wurde 
     for(var m = 0; m <= different_years.length-1; m++){
         year = different_years[m];
         var bruh = "https://backend.xml.kreller.dev/"+intervall+"/" + year + "/"+ location_vector + "/";
@@ -422,19 +429,20 @@ async function set_user_date(){
         console.log("selfmade_url in der for schleife:" + selfmade_url[m]);
         console.log("selfmade_url.length:" + selfmade_url.length);
     }
+        // erstellt Dealy für richtige Graphendarstellung bei mehreren Jahren
         for (var d = 0; d < selfmade_url.length; d++){
             console.log("selfmade_url[d]: " + selfmade_url[d]);
             if(time_setter == 0 || O_daily_l_monthly == 0){
-                await delay(7000);
+                await delay(7000); // nur bei meheren Jahren aktiviert -> Graph von 20xx+1 wird damit langsamer geladen als 20xx -> richtige anreihung der Daten
             }
-
+            //Lädt daten aus dem Link herunter
             $.get(selfmade_url[d], function(weather_data) {
                 for(var i = 0; i < dates.length; i++) {
-                    $(weather_data).find("UTC_Date").filter(":contains(" + dates[i] + ")").each(function () {
+                    $(weather_data).find("UTC_Date").filter(":contains(" + dates[i] + ")").each(function () { // schaut nach UTC_Date und gibt dementsprechend Daten davon aus
                         var x;
                         var $dataPoint = $(this);
                         if(time_setter == 1){
-                            x = $dataPoint.clone().children().remove().end().text();
+                            x = $dataPoint.clone().children().remove().end().text(); // .clone().children().remove().end().text(); muss gesetzt werden, weil sonst alle Child Componenten mit im Graphen in der x Achse mit reingeschrieben -> unübersichtlich und nicht richtig dargestellt
                         }else{
                             x = $dataPoint.find(time_options[time_setter]).clone().children().remove().end().text();
                         }
@@ -443,13 +451,15 @@ async function set_user_date(){
                         
                         console.log("Ausgabe von x:" + x);
 
+                        //-99.000 => Wert nicht vorhanden -> wird "entleert"
                         if (y <= -99.000){
                             y = "";
                         }
 
+                        //gibt die Datenpunkte in dataPoints -> Punkte werden gespeichert und können im Graphen dargestellt werden
                         dataPoints.push({label: x, y: parseFloat(y)});
 
-
+                        //Verschiedene Darstellung, je nachdem was in der Checkbox angeklickt wurde
                         if(get_search_will[0] == "Avg_Air_Temperature" || get_search_will[0] == "Avg_Infrared_Temperature" || get_search_will[0] == "Avg_Solar_Radioation"){
                             var $dataPoints_max_temp = $(this);
                             var x_max = $dataPoints_max_temp.find(time_options[time_setter]).clone().children().remove().end().text();
@@ -511,7 +521,8 @@ async function set_user_date(){
 
                     });
                 }
-            
+
+                // Title wird hier generiert/ gesetzt
                 var graph_title = "";
                 if (date.length > 0) {
                     graph_title = date_name + ": " + get_search_will[1];
@@ -521,26 +532,28 @@ async function set_user_date(){
                     graph_title = "Es wurde kein Datum angegeben"
                 }
 
+                //gibt Graph darstellung an | Niederschlag -> Balkendiagramm, sonst Temperatur-Diagramm Design
                 var graph_type = "spline";
                 if(get_search_will[0] == "Precipitation"){
                     graph_type = "column";
                 }
 
                 stop_spinner();
+                //Erstellt den Graphen anhand unserer Daten
                 var chart = new CanvasJS.Chart("chartContainer", {
                     title: {
                         text: graph_title,
                     },
-                    data: [
+                    data: [ // Sollte ein dataPoints angegebenes Array leer sein, wird dieses nicht angezeigt -> keine Seperate anpassung der jeweiligen Checkboxen nötig
                         {
                             type: graph_type,
                             dataPoints: soil_2,
-                            color: "green"
+                            color: "black"
                         },
                         {
                             type: graph_type,
                             dataPoints: soil_1,
-                            color: "green"
+                            color: "yellow"
                         },
                         {
                             type:graph_type,
@@ -564,9 +577,7 @@ async function set_user_date(){
             if(time_setter == 1 && O_daily_l_monthly == 1){
                 d = selfmade_url.length+1;
             }
-        }
-        // $("input[type='text']").val("");
-     
+        }    
 }
 
 function myLoop(i) {         //  create a loop function
@@ -578,16 +589,3 @@ function myLoop(i) {         //  create a loop function
       }                       //  ..  setTimeout()
     }, 3000)
   }
-
-
-  
-
-
-// document.getElementById("jesus").addEventListener("click", function() {
-//     document.getElementById("from").value = "";
-//     document.getElementById("to").value = "";
-//   });
-
-//   document.getElementById("from").addEventListener("click", function() {
-//     document.getElementById("to").value = "";
-//   });
