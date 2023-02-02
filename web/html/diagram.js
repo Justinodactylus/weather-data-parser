@@ -521,6 +521,11 @@ async function set_user_date(){
                     graph_title = "Es wurde kein Datum angegeben"
                 }
 
+                var graph_type = "spline";
+                if(get_search_will[0] == "Precipitation"){
+                    graph_type = "column";
+                }
+
                 stop_spinner();
                 var chart = new CanvasJS.Chart("chartContainer", {
                     title: {
@@ -528,27 +533,27 @@ async function set_user_date(){
                     },
                     data: [
                         {
-                            type: "spline",
+                            type: graph_type,
                             dataPoints: soil_2,
                             color: "green"
                         },
                         {
-                            type: "spline",
+                            type: graph_type,
                             dataPoints: soil_1,
                             color: "green"
                         },
                         {
-                            type:"spline",
+                            type:graph_type,
                             dataPoints: dataPoints_max_temp,
                             color: "red"
                         },
                         {
-                            type:"spline",
+                            type:graph_type,
                             dataPoints: dataPoints_min_temp,
                             color: "blue"
                         },
                         {
-                            type: "spline",
+                            type: graph_type,
                             dataPoints: dataPoints,
                             color: "green"
                         }
