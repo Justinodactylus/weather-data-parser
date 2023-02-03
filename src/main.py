@@ -134,14 +134,22 @@ def validateAndParseXML(pathToXMLFile: str, dtd_validation=True, load_dtd=False,
     try:
         if etree.parse(pathToXMLFile).docinfo.doctype == '':
             dtd_validation = False
-        parser = etree.XMLParser(dtd_validation=dtd_validation, load_dtd=load_dtd, remove_comments=remove_comments, remove_pis=remove_pis, no_network=no_network)
+        parser = etree.XMLParser(dtd_validation=dtd_validation, load_dtd=load_dtd, remove_comments=remove_comments, remove_pis=remove_pis, no_network=no_network, ns_clean=True)
         xmlTree = etree.parse(source=pathToXMLFile, parser=parser)
+        removeNamespacesFromXMLTree(xmlTree)
     except (etree.ParseError, etree.XMLSyntaxError) as err:
         print('ERROR: {}'.format(str(err)))
         exit()
     else:
         print('Congrats, {} is well-formed!\n'.format(pathToXMLFile))
     return xmlTree
+
+def removeNamespacesFromXMLTree(xmlTree: etree):
+    """Remove namespaces when an element tag starts with a namespace."""
+    for elem in xmlTree.iter():
+        i = elem.tag.find('}')
+        if i >= 0:
+            elem.tag = elem.tag[i+1:]
 
 def getHeaders(headerFileName: str='headers.txt'):
     """Downloads the `headers.txt` for the given intervall in `ftp.ncdc.noaa.gov/pub/data/uscrn/products/`.\n
