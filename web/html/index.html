@@ -4,15 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Titel</title>
+
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 
-    <!-- <script type="module" src="diagram.js"></script> -->
+
+    <script type="module" src="diagram.js"></script>
+    <link rel="stylesheet" href="design.css">
   </head>
   <body>
 
@@ -22,6 +27,16 @@
     <input type="text" id="from" name="from">
     <label for="to">to</label>
     <input type="text" id="to" name="to"> 
+
+    <script>
+      document.getElementById("jesus").addEventListener("click", function() {
+        document.getElementById("from").value = "";
+        document.getElementById("to").value = "";
+      });
+      document.getElementById("from").addEventListener("click", function() {
+        document.getElementById("jesus").value = "";
+      });
+    </script>
 
     <input type="checkbox" id="checkbox_temperature" onclick="singleCheckbox(this)">
     <label for="exampleCheckbox">Temperatur</label>
@@ -47,6 +62,179 @@
     <input type="checkbox" id="checkbox_soil_temperature" onclick="singleCheckbox(this)">
     <label for="exampleCheckbox">Bodentemperatur</label>
 
+    <br></br>
+
+    <label for="exampleSelect">Intervall</label>
+    <select id="Intervall" name="Intervall">
+      <option value="option1" selected>hourly</option>
+      <option value="option2">daily</option>
+      <option value="option3">monthly</option>
+    </select>
+
+    <br></br>
+
+    <div style="height:100px;overflow:auto;">
+      <select id="Places" name="Places">
+        <option value=place0>Aleknagik </option>
+        <option value=place1>Bethel </option>
+        <option value=place2>Cordova </option>
+        <option value=place3>Deadhorse </option>
+        <option value=place4>Denali </option>
+        <option value=place5>Fairbanks </option>
+        <option value=place6>Glennallen </option>
+        <option value=place7>Gustavus </option>
+        <option value=place8>Ivotuk </option>
+        <option value=place9>Kenai </option>
+        <option value=place10>King Salmon </option>
+        <option value=place11>Metlakatla </option>
+        <option value=place12>Port Alsworth </option>
+        <option value=place13>Red Dog Mine </option>
+        <option value=place14>Ruby </option>
+        <option value=place15>Sand Point </option>
+        <option value=place16>Selawik </option>
+        <option value=place17>Sitka </option>
+        <option value=place18>St. Paul </option>
+        <option value=place19>Tok </option>
+        <option value=place20>Toolik Lake </option>
+        <option value=place21>Utqiagvik formerly Barrow </option>
+        <option value=place22>Yakutat </option>
+        <option value=place23>Brewton </option>
+        <option value=place24>Clanton </option>
+        <option value=place25>Courtland </option>
+        <option value=place26>Cullman </option>
+        <option value=place27>Fairhope </option>
+        <option value=place28>Gadsden </option>
+        <option value=place29>Gainesville </option>
+        <option value=place30>Greensboro </option>
+        <option value=place31>Highland Home </option>
+        <option value=place32>Muscle Shoals </option>
+        <option value=place33>Northport </option>
+        <option value=place34>Russellville </option>
+        <option value=place35>Scottsboro </option>
+        <option value=place36>Selma </option>
+        <option value=place37>Selma </option>
+        <option value=place38>Talladega </option>
+        <option value=place39>Thomasville </option>
+        <option value=place40>Troy </option>
+        <option value=place41>Valley Head </option>
+        <option value=place42>Batesville </option>
+        <option value=place43>Elgin </option>
+        <option value=place44>Tucson </option>
+        <option value=place45>Williams </option>
+        <option value=place46>Yuma </option>
+        <option value=place47>Bodega </option>
+        <option value=place48>Fallbrook </option>
+        <option value=place49>Merced </option>
+        <option value=place50>Redding </option>
+        <option value=place51>Santa Barbara </option>
+        <option value=place52>Stovepipe Wells </option>
+        <option value=place53>Yosemite Village </option>
+        <option value=place54>Boulder </option>
+        <option value=place55>Cortez </option>
+        <option value=place56>Dinosaur </option>
+        <option value=place57>La Junta </option>
+        <option value=place58>Montrose </option>
+        <option value=place59>Nunn </option>
+        <option value=place60>Everglades City </option>
+        <option value=place61>Sebring </option>
+        <option value=place62>Titusville </option>
+        <option value=place63>Brunswick </option>
+        <option value=place64>Newton </option>
+        <option value=place65>Newton </option>
+        <option value=place66>Watkinsville </option>
+        <option value=place67>Hilo </option>
+        <option value=place68>Mauna Loa </option>
+        <option value=place69>Des Moines </option>
+        <option value=place70>Arco </option>
+        <option value=place71>Murphy </option>
+        <option value=place72>Champaign </option>
+        <option value=place73>Shabbona </option>
+        <option value=place74>Bedford </option>
+        <option value=place75>Manhattan </option>
+        <option value=place76>Oakley </option>
+        <option value=place77>Bowling Green </option>
+        <option value=place78>Versailles </option>
+        <option value=place79>Lafayette </option>
+        <option value=place80>Monroe </option>
+        <option value=place81>Limestone </option>
+        <option value=place82>Old Town </option>
+        <option value=place83>Chatham </option>
+        <option value=place84>Gaylord </option>
+        <option value=place85>Goodridge </option>
+        <option value=place86>Sandstone </option>
+        <option value=place87>Chillicothe </option>
+        <option value=place88>Joplin </option>
+        <option value=place89>Salem </option>
+        <option value=place90>Holly Springs </option>
+        <option value=place91>Newton </option>
+        <option value=place92>Dillon </option>
+        <option value=place93>Lewistown </option>
+        <option value=place94>St. Mary </option>
+        <option value=place95>Wolf Point </option>
+        <option value=place96>Wolf Point </option>
+        <option value=place97>Asheville </option>
+        <option value=place98>Asheville </option>
+        <option value=place99>Durham </option>
+        <option value=place100>Jamestown </option>
+        <option value=place101>Medora </option>
+        <option value=place102>Northgate </option>
+        <option value=place103>Harrison </option>
+        <option value=place104>Lincoln </option>
+        <option value=place105>Lincoln </option>
+        <option value=place106>Whitman </option>
+        <option value=place107>Durham </option>
+        <option value=place108>Durham </option>
+        <option value=place109>Las Cruces </option>
+        <option value=place110>Los Alamos </option>
+        <option value=place111>Socorro </option>
+        <option value=place112>Baker </option>
+        <option value=place113>Denio </option>
+        <option value=place114>Mercury </option>
+        <option value=place115>Ithaca </option>
+        <option value=place116>Millbrook </option>
+        <option value=place117>Wooster </option>
+        <option value=place118>Goodwell </option>
+        <option value=place119>Goodwell </option>
+        <option value=place120>Stillwater </option>
+        <option value=place121>Stillwater </option>
+        <option value=place122>Egbert </option>
+        <option value=place123>Coos Bay </option>
+        <option value=place124>Corvallis </option>
+        <option value=place125>John Day </option>
+        <option value=place126>Riley </option>
+        <option value=place127>Avondale </option>
+        <option value=place128>Kingston </option>
+        <option value=place129>Kingston </option>
+        <option value=place130>Blackville </option>
+        <option value=place131>McClellanville </option>
+        <option value=place132>Aberdeen </option>
+        <option value=place133>Buffalo </option>
+        <option value=place134>Pierre </option>
+        <option value=place135>Sioux Falls </option>
+        <option value=place136>Crossville </option>
+        <option value=place137>Austin </option>
+        <option value=place138>Bronte </option>
+        <option value=place139>Edinburg </option>
+        <option value=place140>Monahans </option>
+        <option value=place141>Muleshoe </option>
+        <option value=place142>Palestine </option>
+        <option value=place143>Panther Junction </option>
+        <option value=place144>Port Aransas </option>
+        <option value=place145>Brigham City </option>
+        <option value=place146>Torrey </option>
+        <option value=place147>Cape Charles </option>
+        <option value=place148>Charlottesville </option>
+        <option value=place149>Darrington </option>
+        <option value=place150>Quinault </option>
+        <option value=place151>Spokane </option>
+        <option value=place152>Necedah </option>
+        <option value=place153>Elkins </option>
+        <option value=place154>Lander </option>
+        <option value=place155>Moose </option>
+        <option value=place156>Sundance </option>
+      </select>
+    </div>
+
     <script>
       function singleCheckbox(clickedCheckbox) {
           var checkboxes = document.getElementsByTagName("input");
@@ -57,16 +245,9 @@
           }
       }
     </script>
-
-    <br></br>
-    <button id="clear_button">Lösche Eingaben</button>
-    <br></br>
     
     <div id="chartContainer" style="width:100%; height:300px;"></div>
-    <!-- <button onclick="window.location.href = 'index_working.html'">Zurück</button> -->
-    <!-- <button onclick="set_user_date()">Debugging</button> -->
-
-    <!-- <button onclick="window.location.href = 'index_graph.html'">Erstelle Graphen</button> -->
     <button id="create_button"> Erstelle Graphen</button>
+    <div id="loading"></div>
   </body>
 </html>
