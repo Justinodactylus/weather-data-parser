@@ -170,6 +170,16 @@ def putDataToXMLElement(xmlTree: etree._Element, elementName: str, data: str):
     for element in xmlTree.iter(elementName):
         element.text = data
 
+def checkStringIfWrong(string: str):
+    """Checks if a string is a float and if so, if its not smaller than -99.000. Returns either original string or empty string"""
+    try:
+        number = float(string)
+        if number <= -99.000:
+            return ""
+        return string
+    except Exception as err:
+        return string
+
 def putListOfDataToXML(xmlElement: etree._Element, headers: list[str], headersXMLMapping: dict[str,str], data: list[str] | str, delimiter: str=' '):
     """Put a list or a string separated by a ``delimiter`` of data to a XML.\n\nNeeds a `headersXMLMapping` of the column header names of your data to the XML element tag names of your given XML template.\n
 Also needs a list of your column header names in the same order as your data is defined.\n"""
@@ -181,7 +191,7 @@ Also needs a list of your column header names in the same order as your data is 
         if j < headers.__len__():
             xmlElementTag = headersXMLMapping.get(headers[j])
             if xmlElementTag and xmlElement is not None:
-                putDataToXMLElement(xmlElement, xmlElementTag, value)
+                putDataToXMLElement(xmlElement, xmlElementTag, checkStringIfWrong(value))
 
 
 def putDataToXML(pathToXMLTemplate: str, pathToData: str, headersXMLMapping: dict[str,str], childElementsTagToReplicate: str, delimiter: str=' '):

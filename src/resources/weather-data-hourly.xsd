@@ -6,125 +6,125 @@ elementFormDefault="qualified">
     <xs:element name="weather_data" type="weather_data_type"/>
     <xs:complexType name="weather_data_type">
         <xs:sequence>
-            <xs:element name="station_number">
-                <xs:complexType mixed="true">
-                    <xs:sequence>
-                        <xs:choice minOccurs="1" maxOccurs="1">
-                            <xs:element name="Longitude" type="xs:decimal"/>
-                            <xs:element name="Latitude" type="xs:decimal"/>
-                            <xs:element name="Version_Number_OF_Stations_Datalogger_Program" type="xs:decimal"/>
-                        </xs:choice>
-                        <xs:choice minOccurs="1" maxOccurs="unbounded">
-                            <xs:element name="UTC_Date">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence >
-                                        <xs:element name="UTC_Time">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence>
-                                                    <xs:element name="Temperature">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="Avg_Air_Temperature_Last_5_Min" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Air_Temperature" type="xs:decimal"/>
-                                                                <xs:element name="Max_Air_Temperature" type="xs:decimal"/>
-                                                                <xs:element name="Min_Air_Temperature" type="xs:decimal"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="Precipitation" type="xs:decimal"/>
-                                                    <xs:element name="Solar_Radioation">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="Avg_Solar_Radioation">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Solar_Radioation_Avg" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="Max_Solar_Radioation">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Solar_Radioation_Max" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="Min_Solar_Radioation">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Solar_Radioation_Min" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="Infrared_Surface_Temperature_Type">
-                                                        <xs:complexType mixed="true">
-                                                            <xs:sequence>
-                                                                <xs:element name="Avg_Infrared_Temperature">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Avg" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="Max_Infrared_Temperature">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Max" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="Min_Infrared_Temperature">
-                                                                    <xs:complexType mixed="true">
-                                                                        <xs:sequence>
-                                                                            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Min" type="xs:integer"/>
-                                                                        </xs:sequence>
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="Avg_RH">
-                                                        <xs:complexType mixed="true">
-                                                            <xs:sequence>
-                                                                <xs:element name="QC_Flag_RH" type="xs:integer"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="Soil_Moisture">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="Avg_Soil_Moisture_5_cm_below" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Moisture_10_cm_below" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Moisture_20_cm_below" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Moisture_50_cm_below" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Moisture_100_cm_below" type="xs:decimal"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                    <xs:element name="Soil_Temperature">
-                                                        <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element name="Avg_Soil_Temperature_5_cm" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Temperature_10_cm" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Temperature_20_cm" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Temperature_50_cm" type="xs:decimal"/>
-                                                                <xs:element name="Avg_Soil_Temperature_100_cm" type="xs:decimal"/>
-                                                            </xs:sequence>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:choice>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="station_number" type="station_number_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="station_number_type" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="1" maxOccurs="1">
+                <xs:element name="Longitude" type="xs:decimal"/>
+                <xs:element name="Latitude" type="xs:decimal"/>
+                <xs:element name="Version_Number_OF_Stations_Datalogger_Program" type="xs:decimal"/>
+            </xs:choice>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="UTC_Date" type="utc_date_type"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="utc_date_type" mixed="true">
+        <xs:sequence >
+            <xs:element name="UTC_Time" type="utc_time_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="utc_time_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="Temperature" type="temperature_type"/>
+            <xs:element name="Precipitation" type="xs:decimal"/>
+            <xs:element name="Solar_Radioation" type="solar_radioation_type"/>
+            <xs:element name="Infrared_Surface_Temperature_Type" type="infrared_surface_temperature_type"/>
+            <xs:element name="Avg_RH" type="rh_type"/>
+            <xs:element name="Soil_Moisture" type="soil_moisture_type"/>
+            <xs:element name="Soil_Temperature" type="soil_temperature_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="temperature_type">
+        <xs:sequence>
+            <xs:element name="Avg_Air_Temperature_Last_5_Min" type="xs:decimal"/>
+            <xs:element name="Avg_Air_Temperature" type="xs:decimal"/>
+            <xs:element name="Max_Air_Temperature" type="xs:decimal"/>
+            <xs:element name="Min_Air_Temperature" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="solar_radioation_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="Avg_Solar_Radioation" type="avg_solar_radioation_type"/>
+            <xs:element name="Max_Solar_Radioation" type="max_solar_radioation_type"/>
+            <xs:element name="Min_Solar_Radioation" type="min_solar_radioation_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="avg_solar_radioation_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Solar_Radioation_Avg" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="max_solar_radioation_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Solar_Radioation_Max" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="min_solar_radioation_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Solar_Radioation_Min" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="infrared_surface_temperature_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="Avg_Infrared_Temperature" type="avg_infrared_temperature_type"/>
+            <xs:element name="Max_Infrared_Temperature" type="max_infrared_temperature_type"/>
+            <xs:element name="Min_Infrared_Temperature" type="min_infrared_temperature_type"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="avg_infrared_temperature_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Avg" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="max_infrared_temperature_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Max" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="min_infrared_temperature_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_Infrared_Surface_Temperature_Min" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rh_type" mixed="true">
+        <xs:sequence>
+            <xs:element name="QC_Flag_RH" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="soil_moisture_type">
+        <xs:sequence>
+            <xs:element name="Avg_Soil_Moisture_5_cm_below" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Moisture_10_cm_below" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Moisture_20_cm_below" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Moisture_50_cm_below" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Moisture_100_cm_below" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="soil_temperature_type">
+        <xs:sequence>
+            <xs:element name="Avg_Soil_Temperature_5_cm" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Temperature_10_cm" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Temperature_20_cm" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Temperature_50_cm" type="xs:decimal"/>
+            <xs:element name="Avg_Soil_Temperature_100_cm" type="xs:decimal"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

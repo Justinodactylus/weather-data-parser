@@ -5,7 +5,7 @@
 <!ELEMENT Version_Number_OF_Stations_Datalogger_Program (#PCDATA)>
 <!ELEMENT UTC_Date (#PCDATA|UTC_Time)*>
 <!ELEMENT UTC_Time (#PCDATA|Temperature|Infrared_Surface_Temperature_Type|Precipitation|Solar_Radioation|Avg_RH|Soil_Moisture|Soil_Temperature)*>
-<!ELEMENT Temperature (#PCDATA|Avg_Air_Temperature_Last_5_Min|Avg_Air_Temperature|Max_Air_Temperature|Min_Air_Temperature)*>
+<!ELEMENT Temperature (Avg_Air_Temperature_Last_5_Min,Avg_Air_Temperature,Max_Air_Temperature,Min_Air_Temperature)>
 <!ELEMENT Avg_Air_Temperature_Last_5_Min (#PCDATA)>
 <!ELEMENT Avg_Air_Temperature (#PCDATA)>
 <!ELEMENT Max_Air_Temperature (#PCDATA)>
@@ -27,13 +27,13 @@
 <!ELEMENT QC_Flag_Solar_Radioation_Min (#PCDATA)>
 <!ELEMENT Avg_RH (#PCDATA|QC_Flag_RH)*>
 <!ELEMENT QC_Flag_RH (#PCDATA)>
-<!ELEMENT Soil_Moisture (#PCDATA|Avg_Soil_Moisture_5_cm_below| Avg_Soil_Moisture_10_cm_below| Avg_Soil_Moisture_20_cm_below| Avg_Soil_Moisture_50_cm_below| Avg_Soil_Moisture_100_cm_below)*>
+<!ELEMENT Soil_Moisture (Avg_Soil_Moisture_5_cm_below,Avg_Soil_Moisture_10_cm_below,Avg_Soil_Moisture_20_cm_below,Avg_Soil_Moisture_50_cm_below,Avg_Soil_Moisture_100_cm_below)>
 <!ELEMENT Avg_Soil_Moisture_5_cm_below (#PCDATA)>
 <!ELEMENT Avg_Soil_Moisture_10_cm_below (#PCDATA)>
 <!ELEMENT Avg_Soil_Moisture_20_cm_below (#PCDATA)>
 <!ELEMENT Avg_Soil_Moisture_50_cm_below (#PCDATA)>
 <!ELEMENT Avg_Soil_Moisture_100_cm_below (#PCDATA)>
-<!ELEMENT Soil_Temperature (#PCDATA|Avg_Soil_Temperature_5_cm|Avg_Soil_Temperature_10_cm|Avg_Soil_Temperature_20_cm|Avg_Soil_Temperature_50_cm|Avg_Soil_Temperature_100_cm)*>
+<!ELEMENT Soil_Temperature (Avg_Soil_Temperature_5_cm,Avg_Soil_Temperature_10_cm,Avg_Soil_Temperature_20_cm,Avg_Soil_Temperature_50_cm,Avg_Soil_Temperature_100_cm)>
 <!ELEMENT Avg_Soil_Temperature_5_cm (#PCDATA)>
 <!ELEMENT Avg_Soil_Temperature_10_cm (#PCDATA)>
 <!ELEMENT Avg_Soil_Temperature_20_cm (#PCDATA)>

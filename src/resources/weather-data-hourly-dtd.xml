@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<weather_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
- xsi:schemaLocation="https://www.w3schools.com weather-data-hourly.xsd"
- xmlns="https://www.w3schools.com">
+<!DOCTYPE weather_data SYSTEM "weather-data-hourly.dtd"> <!-- Old DOCTYPE definition necessary because parser of python module `lxml` can only validate a xml over a DTD when its defined with DOCTYPE -->
+<weather_data>
     <station_number>
         <Longitude></Longitude>
         <Latitude></Latitude>
