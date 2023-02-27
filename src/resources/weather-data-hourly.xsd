@@ -12,14 +12,10 @@ elementFormDefault="qualified">
 
     <xs:complexType name="station_number_type" mixed="true">
         <xs:sequence>
-            <xs:choice minOccurs="1" maxOccurs="1">
-                <xs:element name="Longitude" type="xs:decimal"/>
-                <xs:element name="Latitude" type="xs:decimal"/>
-                <xs:element name="Version_Number_OF_Stations_Datalogger_Program" type="xs:decimal"/>
-            </xs:choice>
-            <xs:choice minOccurs="1" maxOccurs="unbounded">
-                <xs:element name="UTC_Date" type="utc_date_type"/>
-            </xs:choice>
+            <xs:element name="Longitude" type="xs:decimal"/>
+            <xs:element name="Latitude" type="xs:decimal"/>
+            <xs:element name="Version_Number_OF_Stations_Datalogger_Program" type="xs:decimal"/>
+            <xs:element name="UTC_Date" type="utc_date_type"/>
         </xs:sequence>
     </xs:complexType>
 
