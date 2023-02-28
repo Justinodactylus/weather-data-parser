@@ -191,7 +191,7 @@ Also needs a list of your column header names in the same order as your data is 
         if j < headers.__len__():
             xmlElementTag = headersXMLMapping.get(headers[j])
             if xmlElementTag and xmlElement is not None:
-                putDataToXMLElement(xmlElement, xmlElementTag, checkStringIfWrong(value))
+                putDataToXMLElement(xmlElement, xmlElementTag, value)
 
 
 def putDataToXML(pathToXMLTemplate: str, pathToData: str, headersXMLMapping: dict[str,str], childElementsTagToReplicate: str, delimiter: str=' '):
